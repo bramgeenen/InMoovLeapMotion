@@ -1,0 +1,79 @@
+//simple Arduino script to move individual fingers
+
+#include <Servo.h>  
+
+Servo thumb;
+Servo index;
+Servo majeure;
+Servo ringfinger;
+Servo pinky;    // create servo object to control a servo // a maximum of eight servo objects can be created 
+
+int pos = 20;    // variable to store the servo position 
+
+void setup() 
+{ 
+  // attach the servos to the pins:
+  thumb.attach(6);    //green
+  index.attach(5);    //blue
+  majeure.attach(4);  //purple
+  ringfinger.attach(3);
+  //pinky.attach(2);    
+  //start position
+  delay(1000);
+  thumb.write(30);
+  delay (200);
+  index.write(30);
+  delay (200);
+  majeure.write(30);
+  delay (200);
+  ringfinger.write(30);
+  delay (200);
+  //pinky.write(60);
+  //delay (200);
+} 
+ 
+void loop() 
+{
+  //make finger go from current position to new position 
+  for(pos = 30; pos < 90; pos += 1)  // goes from x degrees to x degrees 
+  {                                  // in steps of 1 degree 
+    thumb.write(pos);                // tell servo to go to position in variable 'pos' 
+    delay(30);                       // waits x ms for the servo to reach the position 
+  }
+  //then repeat this step with other positions for this or other fingers to make the fingers continuously moving 
+  for(pos = 90; pos>=30; pos-=1)     
+  {                                
+    thumb.write(pos);                
+    delay(40);                       
+  }
+  for(pos = 30; pos < 90; pos += 1)  
+  {                                  
+    index.write(pos);                
+    delay(15);                       
+  } 
+  for(pos = 90; pos>=30; pos-=1)     
+  {                                
+    index.write(pos);                
+    delay(30);                       
+  }
+  for(pos = 20; pos < 70; pos += 1)  
+  {                                  
+    majeure.write(pos);              
+    delay(25);                       
+  } 
+  for(pos = 70; pos>=20; pos-=1)     
+  {                                
+    majeure.write(pos);             
+    delay(35);                      
+  }
+  for(pos = 30; pos < 90; pos += 1) 
+  {                                 
+    ringfinger.write(pos);          
+    delay(30);                      
+  } 
+  for(pos = 90; pos>=30; pos-=1)    
+  {                                
+    ringfinger.write(pos);          
+    delay(40);                      
+  }  
+}
